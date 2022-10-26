@@ -28,4 +28,4 @@ const incrementCounterDB = async (id) => {
     });
   };
 
-export { app , db };
+export { app , db, incrementCounterDB };
