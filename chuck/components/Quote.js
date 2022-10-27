@@ -21,7 +21,7 @@ export default function Quote({rawQuote}) {
           console.log("Weszlo", quote)
         }else {
           setQuote({
-
+            ...rawQuote,
             charlieUtterance: 0,
           });
         }
@@ -39,6 +39,19 @@ export default function Quote({rawQuote}) {
     const dbInstance = collection(db, 'quotes');
 
     const saveQuotes = async () => {
+
+        const quoteRef = doc(db, 'quotes', rawQuote.id);
+        await updateDoc(quoteRef, {
+          charlieUttrance: increment(1),
+        }).catch(()=> 
+            setDoc(doc(db, "quotes", rawQuote.id),{
+            ...rawQuote,
+            id: rawQuote.id,
+            charlieUttrance:increment(1)
+          }));
+
+  
+
       // const test = onSnapshot(doc(db,'quotes', '93UcUnm8Ljfdyw5iMlzh'),(doc)=> {
       //   console.log(1)
       //   if (doc.exists()) {
