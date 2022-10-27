@@ -10,10 +10,25 @@ export default function Quote({rawQuote}) {
 
 
     useEffect(()=>{
+  
+
+       onSnapshot(doc(db, 'quotes', rawQuote.id), (doc) => {
+        if (doc.exists()) {
+          setQuote({
+            ...rawQuote,
+            charlieUtterance: doc.data().charlieUttrance,
+          });
+          console.log("Weszlo", quote)
+        }else {
+          setQuote({
+
+            charlieUtterance: 0,
+          });
+        }
         
-        setQuote({
-                ...rawQuote, charlieUtterance: 0}
-            )
+      });
+
+    
 
     }, [])
 
@@ -24,6 +39,27 @@ export default function Quote({rawQuote}) {
     const dbInstance = collection(db, 'quotes');
 
     const saveQuotes = async () => {
+      // const test = onSnapshot(doc(db,'quotes', '93UcUnm8Ljfdyw5iMlzh'),(doc)=> {
+      //   console.log(1)
+      //   if (doc.exists()) {
+      //     console.log("jest")
+      //   }
+      //   console.log("nie jest")
+      // })
+
+        // const snapShot = await getDocs(dbInstance)
+        // const arr = snapShot.docs.map(doc=> {
+        //   if(doc.data().id === rawQuote.id ){
+        //     console.log("docId",doc.id)
+        //   }
+        // })
+
+        // Up Testing
+        // ==============================================
+
+
+
+
       // --------------------------------------------------------------------------------------------
         //Update if You have "Documenbt Id" from Firestore
 
