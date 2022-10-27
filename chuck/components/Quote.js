@@ -37,18 +37,27 @@ export default function Quote({rawQuote}) {
       // --------------------------------------------------------------------------------------------
       // Add a new record to DB using SetDoc
 
-      await await setDoc(doc(db, "quotes", rawQuote.id),{
-        id: rawQuote.id,
-        charlieUttrance:increment(1)
-        })
+      // await await setDoc(doc(db, "quotes", rawQuote.id),{
+      //   id: rawQuote.id,
+      //   charlieUttrance:increment(1)
+      //   })
                             // -----------------------------------------------------------------------
       // Add a new record to DB using addDoc
 
       // const dbInstance = collection(db, 'quotes');
-      // // addDoc(dbInstance, {
+      //  addDoc(dbInstance, {
       //           id: rawQuote.id,
       //           charlieUttrance:increment(1)
       //       })
+
+                            // ----------------------------------------------------------------------
+      // Add a new record to DB using addDoc and get the id after adding as the id is generated on the clients side
+    //   const dbInstance = collection(db, 'quotes');
+    //   const add = await addDoc(dbInstance, {
+    //            id: rawQuote.id,
+    //            charlieUttrance:increment(1)
+    //        })
+    //  console.log(add.id)
 
       // --------------------------------------------------------------------------------------------
       // GET a certain record from FireStore
@@ -65,8 +74,14 @@ export default function Quote({rawQuote}) {
       //   console.log(arr)
 
       // --------------------------------------------------------------------------------------------
+      // Get All records ID
 
-      
+      //  const snapShot = await getDocs(dbInstance)
+      //   const arr = snapShot.docs.map(doc=> doc.id)
+      //   console.log(arr)
+
+      // --------------------------------------------------------------------------------------------
+
         setQuote({...quote, charlieUtterance: quote.charlieUtterance+1})
 
           
