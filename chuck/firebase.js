@@ -22,7 +22,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const incrementCounterDB = async (id) => {
-    const quoteRef = doc(db, 'quotes', id);
+  const quoteRef = doc(db, 'quotes', id);
+    
     await updateDoc(quoteRef, {
       charlieUttrance: increment(1),
     });
