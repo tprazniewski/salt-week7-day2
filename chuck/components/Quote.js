@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { app, db, incrementCounterDB } from '../firebase';
-import { doc, collection, addDoc, getDocs,updateDoc, onSnapshot,increment,getDoc } from 'firebase/firestore';
+import { doc, collection, addDoc, getDocs,updateDoc, onSnapshot,increment,getDoc,setDoc } from 'firebase/firestore';
 
 
 export default function Quote({rawQuote}) {
@@ -35,10 +35,17 @@ export default function Quote({rawQuote}) {
 
 
       // --------------------------------------------------------------------------------------------
-      // Add a new record to DB
+      // Add a new record to DB using SetDoc
+
+      await await setDoc(doc(db, "quotes", rawQuote.id),{
+        id: rawQuote.id,
+        charlieUttrance:increment(1)
+        })
+                            // -----------------------------------------------------------------------
+      // Add a new record to DB using addDoc
 
       // const dbInstance = collection(db, 'quotes');
-      // addDoc(dbInstance, {
+      // // addDoc(dbInstance, {
       //           id: rawQuote.id,
       //           charlieUttrance:increment(1)
       //       })
@@ -53,10 +60,10 @@ export default function Quote({rawQuote}) {
       // --------------------------------------------------------------------------------------------
       // Get All records
 
-       const snapShot = await getDocs(dbInstance)
-        const arr = snapShot.docs.map(doc=> doc.data())
-        console.log(arr)
-        
+      //  const snapShot = await getDocs(dbInstance)
+      //   const arr = snapShot.docs.map(doc=> doc.data())
+      //   console.log(arr)
+
       // --------------------------------------------------------------------------------------------
 
       
